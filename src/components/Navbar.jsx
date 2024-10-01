@@ -1,7 +1,23 @@
-
-import { AppBar, Toolbar, Typography, styled, Box, InputBase, Badge, Avatar } from "@mui/material"
-import { Mail, Notifications, Pets } from "@mui/icons-material"
+import { 
+        AppBar, 
+        Toolbar, 
+        Typography, 
+        styled, 
+        Box, 
+        InputBase, 
+        Badge, 
+        Avatar,
+        Menu,
+        MenuItem,
+       } from "@mui/material"
+import { 
+        Mail, 
+        Notifications, 
+        Pets, 
+        InboxOutlined
+       } from "@mui/icons-material"
 import { deepPurple } from "@mui/material/colors"
+import { useState } from "react"
 
 function Navbar() {
   const StyledToolbar = styled(Toolbar)({
@@ -33,6 +49,8 @@ function Navbar() {
       display: "none",
     }
   }))
+
+  const [open, setOpen] = useState(false)
   return (
     <AppBar position="sticky">
       <StyledToolbar>
@@ -51,13 +69,39 @@ function Navbar() {
           <Badge badgeContent={2} color="error">
             <Notifications />
           </Badge>
-          <Avatar sx={{bgcolor: deepPurple[500], width:40, height:40}}>W</Avatar>
+          <Avatar 
+              sx={{
+                bgcolor: deepPurple[500], 
+                width:40, 
+                height:40
+              }}
+              onClick = {(e) => setOpen(true)}
+          >W</Avatar>
         </Icons>
-        <UserBox>
+        <UserBox onClick = {(e) => setOpen(true)}>
           <Avatar sx={{bgcolor: deepPurple[500]}}>W</Avatar>
           <Typography>Wung</Typography>
         </UserBox>
       </StyledToolbar>
+      <Menu 
+        id="position-menu"
+        aria-labelledby="position-button"
+        open={open}
+        onClose={(e) => setOpen(false)}
+        anchorOrigin={{
+          vertical:"top",
+          horizontal: "right"
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right"
+        }}
+      >
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>My Account</MenuItem>
+        <MenuItem>Logout</MenuItem>
+
+      </Menu>
     </AppBar>
   )
 }

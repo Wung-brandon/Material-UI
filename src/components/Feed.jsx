@@ -1,15 +1,19 @@
-import { Box, Typography } from '@mui/material'
-
-
+import { 
+          Box, 
+  
+        } from '@mui/material'
+import Post from './Post'
 function Feed() {
   return (
-    <Box 
-      bgcolor="red" 
+    <Box  
       flex={4} 
       p={2}
-      sx={{}}
     >
-      <Typography variant='h4'>Feed</Typography>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
     </Box>
   )
 }
